@@ -59,11 +59,11 @@ class FileProxyClient:
         
         return f"All Files Downloaded For: {os.path.join(location)}"
 
-    def start_process(self):
-        year = 2016
-        month = 12
-        day = 1
-        if os.path.exists("./info.json"):
+    def start_process(self, year=2016, month=12, day=1):
+        year = year
+        month = month
+        day = day
+        if os.path.exists("./info.json") and year != 2016 and month != 12 and day != 1:
             with open("./info.json", "r") as f:
                 data = json.load(f)
                 year = data.get("year")
@@ -98,7 +98,7 @@ class FileProxyClient:
 
 
 if __name__ == "__main__":
-    client = FileProxyClient("127.0.0.1", 8000)
+    client = FileProxyClient("172.233.183.49", 8000)
     try:
         client.start_process()
     except Exception as e:
